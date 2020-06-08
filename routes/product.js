@@ -51,7 +51,7 @@ router.put(
 );
 
 //listing route
-router.get("/products", getAllProducts);
+router.get("/products", getAllProducts, (req, res) => res.render('products.ejs'));
 
 router.get("/products/categories", getAllUniqueCategories);
 

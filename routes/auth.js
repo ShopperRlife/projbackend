@@ -3,6 +3,8 @@ var router = express.Router();
 const { check, validationResult } = require("express-validator");
 const { signout, signup, signin, isSignedIn } = require("../controllers/auth");
 
+router.get('/signup', (req, res) => res.render('signup.ejs'))
+
 router.post(
   "/signup",
   [
@@ -12,6 +14,9 @@ router.post(
   ],
   signup
 );
+
+
+router.get('/signin', (req, res) => res.render('login.ejs'))
 
 router.post(
   "/signin",
