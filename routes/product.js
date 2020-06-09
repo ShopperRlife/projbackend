@@ -23,7 +23,7 @@ router.param("productId", getProductById);
 router.post(
   "/product/create/:userId",
   isSignedIn,
-  isAuthenticated,
+  // isAuthenticated,
   isAdmin,
   createProduct
 );
@@ -51,8 +51,8 @@ router.put(
 );
 
 //listing route
-router.get("/products", getAllProducts, (req, res) => res.render('products.ejs'));
+router.get("/products", getAllProducts);
 
-router.get("/products/categories", getAllUniqueCategories);
+router.get("/:userId/products/category/:categoryId", getAllUniqueCategories);
 
 module.exports = router;

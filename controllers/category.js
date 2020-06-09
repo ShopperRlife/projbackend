@@ -13,6 +13,7 @@ exports.getCategoryById = (req, res, next, id) => {
 };
 
 exports.createCategory = (req, res) => {
+  
   const category = new Category(req.body);
   category.save((err, category) => {
     if (err) {
@@ -29,13 +30,16 @@ exports.getCategory = (req, res) => {
 };
 
 exports.getAllCategory = (req, res) => {
+  let userId = req.params.userId
   Category.find().exec((err, categories) => {
     if (err) {
       return res.status(400).json({
         error: "NO categories found"
       });
     }
-    res.json(categories);
+    else {
+      res.render('categories.ejs', {categories: categories, userId: userId})
+    }
   });
 };
 

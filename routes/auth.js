@@ -7,6 +7,7 @@ router.get('/signup', (req, res) => res.render('signup.ejs'))
 
 router.post(
   "/signup",
+  
   [
     check("name", "name should be at least 3 char").isLength({ min: 3 }),
     check("email", "email is required").isEmail(),

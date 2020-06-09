@@ -15,7 +15,8 @@ exports.getOrderById = (req, res, next, id) => {
 };
 
 exports.createOrder = (req, res) => {
-  req.body.order.user = req.profile;
+  let userId = req.params.userId
+  let productId = req.params.productId
   const order = new Order(req.body.order);
   order.save((err, order) => {
     if (err) {
@@ -23,7 +24,7 @@ exports.createOrder = (req, res) => {
         error: "Failed to save your order in DB"
       });
     }
-    res.json(order);
+    res.redirect('/api/order/all/'+userId)
   });
 };
 
@@ -36,7 +37,8 @@ exports.getAllOrders = (req, res) => {
           error: "No orders found in DB"
         });
       }
-      res.json(order);
+      res.render('orders.ejs', {order: order})
+      console.log(order);
     });
 };
 

@@ -19,19 +19,19 @@ router.param("orderId", getOrderById);
 //Actual routes
 //create
 router.post(
-  "/order/create/:userId",
-  isSignedIn,
-  isAuthenticated,
-  pushOrderInPurchaseList,
-  updateStock,
+  "/order/create/:userId/:productId",
+  // isSignedIn,
+  // isAuthenticated,
+  //  pushOrderInPurchaseList,
+  // updateStock,
   createOrder
 );
 //read
 router.get(
   "/order/all/:userId",
-  isSignedIn,
-  isAuthenticated,
-  isAdmin,
+  // isSignedIn,
+  // isAuthenticated,
+  // isAdmin,
   getAllOrders
 );
 

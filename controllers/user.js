@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const Order = require("../models/order");
+const products = require('../models/product')
 
 exports.getUserById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
@@ -64,7 +65,7 @@ exports.pushOrderInPurchaseList = (req, res, next) => {
     });
   });
 
-  //store thi in DB
+  //store this in DB
   User.findOneAndUpdate(
     { _id: req.profile._id },
     { $push: { purchases: purchases } },

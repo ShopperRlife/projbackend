@@ -58,7 +58,8 @@ exports.signin = (req, res) => {
 
     //send response to front end
     const { _id, name, email, role } = user;
-    return res.json({ token, user: { _id, name, email, role } });
+    // return res.json({ token, user: { _id, name, email, role } });
+    res.redirect('/api/'+_id+'/categories')
   });
 };
 
