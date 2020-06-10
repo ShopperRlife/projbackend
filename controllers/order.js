@@ -1,5 +1,6 @@
 const { Order, ProductCart } = require("../models/order");
-
+const User = require('../models/user')
+const product = require('../models/product')
 exports.getOrderById = (req, res, next, id) => {
   Order.findById(id)
     .populate("products.product", "name price")
@@ -11,7 +12,9 @@ exports.getOrderById = (req, res, next, id) => {
       }
       req.order = order;
       next();
+      res.json(order)
     });
+ 
 };
 
 exports.createOrder = (req, res) => {
@@ -24,13 +27,16 @@ exports.createOrder = (req, res) => {
         error: "Failed to save your order in DB"
       });
     }
-    res.redirect('/api/order/all/'+userId)
+    res.redirect('/api/order/all/'+userId+'/'+productId)
   });
 };
 
 exports.getAllOrders = (req, res) => {
+  let user = User.collection.find()
+  let userId = req.params.userId
+  let productId = req.params.productId
   Order.find()
-    .populate("user", "_id name")
+    .populate("products.product", "name price")
     .exec((err, order) => {
       if (err) {
         return res.status(400).json({
@@ -38,7 +44,7 @@ exports.getAllOrders = (req, res) => {
         });
       }
       res.render('orders.ejs', {order: order})
-      console.log(order);
+      console.log(user)
     });
 };
 

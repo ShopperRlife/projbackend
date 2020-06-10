@@ -1,4 +1,27 @@
 const Category = require("../models/category");
+const Products = require('../models/product')
+const { isSignedIn, isAdmin, isAuthenticated } = require("./auth");
+
+exports.displayCategories = (req, res) => {
+  Category.find().exec((err, categories) => {
+    if (err) {
+      return res.status(400).json({
+        error: "NO categories found"
+      });
+    }
+    else {
+      Products.find().exec((err, products) => {
+        if (err) {
+          return res.status(400).json({
+            error: "NO products found"
+          });
+        }
+        else
+          res.render('index.ejs', {categories: categories, products:products })
+  });
+}
+})
+}
 
 exports.getCategoryById = (req, res, next, id) => {
   Category.findById(id).exec((err, cate) => {

@@ -16,6 +16,7 @@ exports.getProductById = (req, res, next, id) => {
       req.product = product;
       next();
     });
+    
 };
 
 // exports.createProduct = (req, res) => {
@@ -170,17 +171,6 @@ exports.getAllProducts = (req, res) => {
 
 exports.getAllUniqueCategories = (req, res) => {
   let categoryId = req.params.categoryId
-  // Product.distinct("category", {}, (err, category) => {
-  //   if (err) {
-  //     return res.status(400).json({
-  //       error: "NO category found"
-  //     });
-  //   }
-  //   // else{
-  //   //   res.render('Particularproducts.ejs', {category: category, product:product})
-  //   // }
-  //   res.json(category)
-  // });
   let userId = req.params.userId   
   Product.find({"category":categoryId}, (err, products) => {
     if(!err){

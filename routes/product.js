@@ -52,7 +52,7 @@ router.put(
 
 //listing route
 router.get("/products", getAllProducts);
-
-router.get("/:userId/products/category/:categoryId", getAllUniqueCategories);
+router.get("/category/:categoryId/products", getAllUniqueCategories);
+router.get("/:userId/category/:categoryId/products", getAllUniqueCategories);
 
 module.exports = router;

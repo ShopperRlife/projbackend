@@ -28,7 +28,7 @@ router.post(
 );
 //read
 router.get(
-  "/order/all/:userId",
+  "/order/all/:userId/:productId",
   // isSignedIn,
   // isAuthenticated,
   // isAdmin,

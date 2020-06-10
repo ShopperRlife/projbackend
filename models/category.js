@@ -8,6 +8,9 @@ const categorySchema = new mongoose.Schema(
       required: true,
       maxlength: 32,
       unique: true
+    },
+    photo: {
+      type: String
     }
   },
   { timestamps: true }

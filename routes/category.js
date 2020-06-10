@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-
 const {
+  displayCategories,
   getCategoryById,
   createCategory,
   getCategory,
@@ -17,6 +17,8 @@ router.param("userId", getUserById);
 router.param("categoryId", getCategoryById);
 
 //actual routers goes here
+router.get('/', displayCategories)
+router.get("/categories", getAllCategory);
 
 //create
 router.post(

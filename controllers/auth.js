@@ -20,11 +20,7 @@ exports.signup = (req, res) => {
         err: "NOT able to save user in DB"
       });
     }
-    res.json({
-      name: user.name,
-      email: user.email,
-      id: user._id
-    });
+    res.redirect('/api/signin')
   });
 };
 
@@ -59,15 +55,13 @@ exports.signin = (req, res) => {
     //send response to front end
     const { _id, name, email, role } = user;
     // return res.json({ token, user: { _id, name, email, role } });
-    res.redirect('/api/'+_id+'/categories')
+    res.redirect('/')
   });
 };
 
 exports.signout = (req, res) => {
   res.clearCookie("token");
-  res.json({
-    message: "User signout successfully"
-  });
+  res.redirect('/')
 };
 
 //protected routes
@@ -75,6 +69,8 @@ exports.isSignedIn = expressJwt({
   secret: process.env.SECRET,
   userProperty: "auth"
 });
+
+
 
 //custom middlewares
 exports.isAuthenticated = (req, res, next) => {

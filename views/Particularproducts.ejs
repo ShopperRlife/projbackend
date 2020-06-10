@@ -250,7 +250,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6><a href="#"> <%= product.name %> </a></h6>
-                                    <form action="/api/order/create/<%= userId %>/<% product._id %>" method="POST">
+                                    <form action="/api/order/create/<%= userId %>/<%= product._id %>" method="POST">
                                         <input type="submit" name="Add to cart" id="" value = "Add to cart">
                                     </form>
                                 </div>

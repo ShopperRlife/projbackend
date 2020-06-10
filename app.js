@@ -42,7 +42,7 @@ app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", productRoutes);
 app.use("/api", orderRoutes);
-app.get('/', (req, res) => res.render('index.ejs'))
+app.get('/', (req, res) => res.redirect('/api/'))
 //PORT
 const port = process.env.PORT || 4000;
 
